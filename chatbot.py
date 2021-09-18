@@ -11,6 +11,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 import time
 from threading import Timer
+import datetime
 
 conversation_dict = {
 
@@ -155,7 +156,6 @@ def conversation_input(user_input):
                 return response
 
 
-
 def answer(user_name):
     timeout = 30
     time = Timer(timeout, print,
@@ -190,10 +190,17 @@ def welcome(user_name):
             break
 
 
+def greet():
+    currentTime = datetime.datetime.now()
+    if currentTime.hour < 12:
+        return "Good morning."
+    elif 12 <= currentTime.hour < 18:
+        return "Good afternoon."
+    else:
+        return "Good evening."
+
 def start_chat():
-
-    print("[Eliza]: Hello. I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?")
-
+    print("[Eliza]: %s I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?"%greet())
     user_name = 'User'
     name_input = input('[User] ')
     print()
