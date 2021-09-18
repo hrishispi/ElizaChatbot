@@ -114,12 +114,19 @@ conversation_dict = {
 }
 
 pronoun = {
-    'you': "I",
+    "you": "me",
     "yours": "mine",
     "your": "my",
     "you will": "I will",
     "you have": "I have",
     "you can": "I can",
+    "me": "you",
+    "mine": "yours",
+    "my": "your",
+    "I will": "you will",
+    "I have": "you have",
+    "I can": "you can"
+
 }
 
 
@@ -141,21 +148,12 @@ def conversation_input(user_input):
             response = random.choice(responses)
             if "%s" in response:
                 match = ans[1]
-
                 pronoun = transform(match)
                 response = response % (pronoun)
                 return response
             else:
                 return response
 
-
-def input_name():
-    timeout = 30
-    time = Timer(timeout, print, ['\n[Eliza] Hi. Are you still there? Can I get your name please?\n'])
-    time.start()
-    name = input('[User] ')
-    time.cancel()
-    return name
 
 
 def answer(user_name):
@@ -193,10 +191,11 @@ def welcome(user_name):
 
 
 def start_chat():
+
     print("[Eliza]: Hello. I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?")
 
     user_name = 'User'
-    name_input = input_name()
+    name_input = input('[User] ')
     print()
 
     tokenizer = word_tokenize(name_input)
