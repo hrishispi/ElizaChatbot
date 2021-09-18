@@ -9,40 +9,42 @@ import re
 import random
 import nltk
 from nltk.tokenize import word_tokenize
+import time
+from threading import Timer
 
 conversation_dict = {
 
-    r'.*(kids?|child|children).*':
+    r'.*(kids?|child(ren)?).*':
         [
-            "Can you tell me more about your \1?",
-            "How would you describe your relationship with your \1?",
-            "What do you enjoy doing with your \1?"
+            "Can you tell me more about your %s?",
+            "How would you describe your relationship with your %s?",
+            "What do you enjoy doing with your %s?"
         ],
 
-    r'I lost (.*)':
+    r'i lost (.*)':
         [
             "I'm sorry to hear that. Can you tell me what happened?",
-            "That must be tought. How are you feeling now?",
+            "That must be tough. How are you feeling now?",
             "How are you dealing with the loss of %s?"
         ],
 
-    r'.*(depressed|sad|pressure|stress).*':
+    r'.*(depressed|sad|pressured?|stress(ed)?).*':
         [
-            "Why do you feel \1?",
+            "Why do you feel %s?",
             "Have you talked to anyone about how you are feeling?",
-            "How do you prefer managing feeling \1?"
+            "How do you prefer managing feeling %s?"
         ],
-    r'.*(kill|suicide|die).*':
+    r'.*(kill(ing|ed)?|suicide|die).*':
         [
             "Please stop dwelling on such thoughts. Do you share these thoughts with others in your life?",
             "Would you like to call the National Suicide Prevention Lifeline at 1-800-273-8255 (Talk)? The toll-free confidential Lifeline is available 24 hours a day, seven days a week",
-            "%s eliminates the possibility of improving the situation. Surely, we can find a solution"
+            "This eliminates the possibility of improving the situation. Surely, we can find a solution"
         ],
     r'.*(job|work|career).*':
         [
             "Do you like what you do?",
-            "Can you tell me more about your \1?",
-            "How do you feel about your \1?"
+            "Can you tell me more about your %s?",
+            "How do you feel about your %s?"
         ],
     r'.*(covid|lockdown|masks|pandemic).*':
         [
@@ -50,7 +52,7 @@ conversation_dict = {
             "Such occurrences have been natural to human history. Surely, we can overcome it.",
             "How has it affected your life?"
         ],
-    r' I hate (.*)':
+    r'i hate (.*)':
         [
             "When did you decide you truly hate %s?",
             "Were there incidents that made you come to this conclusion?",
@@ -62,45 +64,53 @@ conversation_dict = {
             "How long has this been part of your life?",
             "There can be ways to manage this and continue with your daily routines"
         ],
-    r' (.*) makes me happy.':
+    r'(.*) makes me happy':
         [
             "That’s wonderful. You should continue to pursue such feelings.",
             "Are there other feelings you associate with %s?",
             "How often do you make time for %s?"
         ],
-    r' How can I stop (.*)?':
+    r'how can i stop (.*)':
         [
             "Well what reasons typically can you associate with %s?",
             "What avenues have you pursued in the past?",
             "Has %s been recent or ongoing for some time?"
         ],
-    r' (I am|I’m) not ready (for|to) (.*)':
+    r'i am not ready (.*)':
         [
-            "What makes you think you’re not ready for|to %s?",
+            "What makes you think you’re not ready %s?",
             "Did you at least try to %s?",
-            "What do you think can prepare you to %s?"
+            "What do you think you can do to prepare %s?"
         ],
-    r' I do\’?n?o?t have (.*)':
+    r'i don\'?t? have (.*)':
         [
             "Did you try earning %s?",
             "What was the last thing you did to earn %s?",
-            "Do you know anyone with that %s?",
+            "Do you know anyone with %s?",
             "Do you know anyone who earned that %s and how?",
             "Perhaps there are some sources available that teaches you how to get %s"
         ],
-    r' I do\'?n?o?t want (.*)':
+    r'i don\'?t? want(.*)':
         [
             "Have you ever had %s?",
             "What motivated you to not want %s?",
             "Do you want something else?",
             "What do you want now then? Other than %s?"
         ],
-    r' (.*) divorce (.*)':
+    r'(.*) divorce (.*)':
         [
             "Are you sure about pursuing this choice?",
             "What happened?",
             "Have you talked to your partner about this choice?"
-        ]
+        ],
+    r'(.*)':
+        [
+            "Can you tell me more about it?",
+            "Would you mind sharing more about it?",
+            "Please tell me more.",
+            "How does that make you feel?"
+        ],
+
 }
 
 pronoun = {
@@ -139,8 +149,22 @@ def conversation_input(user_input):
                 return response
 
 
+def input_name():
+    timeout = 30
+    time = Timer(timeout, print, ['\n[Eliza] Hi. Are you still there? Can I get your name please?\n'])
+    time.start()
+    name = input('[User] ')
+    time.cancel()
+    return name
+
+
 def answer(user_name):
+    timeout = 30
+    time = Timer(timeout, print,
+                 ['\n[Eliza] Hi %s. Are you still there? Is there anything more you want to tell me?\n' % user_name])
+    time.start()
     name = input('[%s] ' % user_name)
+    time.cancel()
     return name
 
 
@@ -168,11 +192,6 @@ def welcome(user_name):
             break
 
 
-def input_name():
-    name = input('[User] ')
-    return name
-
-
 def start_chat():
     print("[Eliza]: Hello. I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?")
 
@@ -181,11 +200,7 @@ def start_chat():
     print()
 
     tokenizer = word_tokenize(name_input)
-
-    if "name" not in name_input:
-        user_name = name_input
-    else:
-        user_name = tokenizer[-1]
+    user_name = tokenizer[-1]
     return user_name
 
 
