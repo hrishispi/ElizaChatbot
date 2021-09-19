@@ -25,4 +25,6 @@ To end the session, 'exit' or 'bye' will terminate the session.
     else:
         return "Good evening."
 ```
+
+## Algorithm flow diagram
 ![Flow diagram](https://github.com/hrishispi/ElizaChatbot/blob/main/ElizaFlowDiagram.jpg?raw=true)
