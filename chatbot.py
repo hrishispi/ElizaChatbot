@@ -5,15 +5,13 @@ Created on Wed Sep 15 05:44:06 2021
 
 @author: prakritipanday
 """
-import re
-import random
-import nltk
-from nltk.tokenize import word_tokenize
-import time
-from threading import Timer
 import datetime
+import random
+import re
 
-conversation_dict = {
+from nltk.tokenize import word_tokenize
+
+model = {
 
     r'.*(kids?|child(ren)?).*':
         [
@@ -131,7 +129,7 @@ pronoun = {
 }
 
 
-def transform(match):
+def replace_pronouns(match):
     tokenizer = word_tokenize(match)
 
     for x, token in enumerate(tokenizer):
@@ -141,7 +139,7 @@ def transform(match):
 
 
 def conversation_input(user_input):
-    for pattern, responses in conversation_dict.items():
+    for pattern, responses in model.items():
 
         ans = re.search(pattern, user_input.rstrip(",.!"))
 
@@ -149,45 +147,28 @@ def conversation_input(user_input):
             response = random.choice(responses)
             if "%s" in response:
                 match = ans[1]
-                pronoun = transform(match)
-                response = response % (pronoun)
+                response = response % (replace_pronouns(match))
                 return response
             else:
                 return response
 
 
-def answer(user_name):
-    timeout = 30
-    time = Timer(timeout, print,
-                 ['\n[Eliza] Hi %s. Are you still there? Is there anything more you want to tell me?\n' % user_name])
-    time.start()
-    name = input('[%s] ' % user_name)
-    time.cancel()
-    return name
-
-
-def welcome(user_name):
-    print("[Eliza] Welcome %s. What would you like to share with me today?" % user_name)
-
+def process(user_name):
+    print("Eliza: Welcome %s. What would you like to share with me today?" % user_name)
     end = [r'.*bye.*', r'.*exit.*']
-
-    while True:
-        user_input = answer(user_name)
+    user_continue = True
+    while user_continue:
+        user_input = input('%s: ' % user_name)
         print()
         user_input = user_input.lower()
 
-        find_quits = 0
-
         for i in end:
-            matches = re.findall(i, user_input)
-            find_quits += len(matches)
-
-        if find_quits == 0:
+            user_exit = re.findall(i, user_input)
+            if len(user_exit) != 0:
+                user_continue = False
+        if user_continue:
             response = conversation_input(user_input)
-            print("[Eliza] " + response)
-        else:
-            print("[Eliza] Goodbye ")
-            break
+            print("Eliza: " + response)
 
 
 def greet():
@@ -199,20 +180,20 @@ def greet():
     else:
         return "Good evening."
 
-def start_chat():
-    print("[Eliza]: %s I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?"%greet())
-    user_name = 'User'
-    name_input = input('[User] ')
-    print()
 
+def initiate_conversation():
+    print("Eliza: %s I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?" % greet())
+    name_input = input('User: ')
+    print()
     tokenizer = word_tokenize(name_input)
     user_name = tokenizer[-1]
     return user_name
 
 
 def main():
-    user_name = start_chat()
-    welcome(user_name)
+    user_name = initiate_conversation()
+    process(user_name)
+    print("Eliza: Goodbye ")
 
 
 if __name__ == '__main__':
