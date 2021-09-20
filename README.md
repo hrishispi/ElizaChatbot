@@ -12,16 +12,16 @@ Eliza has a dictionary of pronouns and can respond logically providing back an a
 
 Eliza utlizes word spotting to ensure a conversation can be carried on. A placeholder is used in the keyword along with generic phrases like "I feel", "I lost" which could be familiar in a psychotherapist session. 
 
-There's also a timer feature that will alert Eliza to continue the conversation if the user is idle for more than 30 sec. 
-
+ 
 While there are particular keywords for which Eliza has a set of solutions, if she's unable to recognize the user's issue, Eliza will request more information in order to match the set of keywords to provide an accurate session.
 
 To end the session, 'exit' or 'bye' will terminate the session. 
 
 The screenshots below captures conversation between Eliza and a user. The conversation entails each point highlighted above. 
 
-<img width="1071" alt="Screen Shot 2021-09-20 at 12 58 07 PM" src="https://user-images.githubusercontent.com/90986120/134044035-02944fdc-0944-4300-94cb-feaacb482f10.png">
-<img width="902" alt="Screen Shot 2021-09-20 at 1 05 24 PM" src="https://user-images.githubusercontent.com/90986120/134044044-ab070e30-042a-4e67-b2a8-def1ed25a0f4.png">
+<img width="974" alt="Screen Shot 2021-09-20 at 1 16 57 PM" src="https://user-images.githubusercontent.com/90986120/134045996-9203f42e-6229-46d6-ab9c-3de95a62955a.png">
+
+<img width="893" alt="Screen Shot 2021-09-20 at 1 21 07 PM" src="https://user-images.githubusercontent.com/90986120/134046003-3fc619e6-7274-4cfd-84af-052dd57cc524.png">
 
 
 ## Bonus Functionality 
