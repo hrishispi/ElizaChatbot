@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-
+"""
+Created on Wed Sep 15 05:44:06 2021
+Class: AIT 526
+@author: Prakriti Panday, Sean Park, Alice Chen , Hrishikesh Karambelkar
+"""
 import datetime
 import random
 import re
