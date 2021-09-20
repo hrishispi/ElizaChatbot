@@ -18,7 +18,7 @@ While there are particular keywords for which Eliza has a set of solutions, if s
 
 To end the session, 'exit' or 'bye' will terminate the session. 
 
-The screenshot below captures a conversation between Eliza and a user. The conversation entails each point highlighted above. 
+The screenshots below captures conversation between Eliza and a user. The conversation entails each point highlighted above. 
 
 <img width="1071" alt="Screen Shot 2021-09-20 at 12 58 07 PM" src="https://user-images.githubusercontent.com/90986120/134044035-02944fdc-0944-4300-94cb-feaacb482f10.png">
 <img width="902" alt="Screen Shot 2021-09-20 at 1 05 24 PM" src="https://user-images.githubusercontent.com/90986120/134044044-ab070e30-042a-4e67-b2a8-def1ed25a0f4.png">
