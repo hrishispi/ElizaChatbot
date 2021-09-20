@@ -8,7 +8,7 @@ The objective of the assignment is to design a chatbot named Eliza using Python.
 
 Eliza will begin with a greeting. The greeting itself has multiple features, including a bonus functionality. Eliza will introduce herself, recognize the time zone of the user and customize the greeting based on the local time of the user and then request the name of the user. Once a name has been entered, preferably a one word name, Eliza will welcome the user and begin her session. 
 
-Eliza has a dictionary of pronouns and can respond logically providing back an appropriate pronoun response. So if the user mentions " my children", Eliza will request more information about "your children". 
+Eliza has a dictionary of pronouns and can respond logically providing back an appropriate pronoun response. So if the user mentions " my mom", Eliza will request more information about "your mom". 
 
 ## Add spotting examples
 
