@@ -10,12 +10,15 @@ Eliza will begin with a greeting. The greeting itself has multiple features, inc
 
 Eliza has a dictionary of pronouns and can respond logically providing back an appropriate pronoun response. So if the user mentions " my mom", Eliza will request more information about "your mom". 
 
-## Add spotting examples
+Eliza utlizes word spotting to ensure a conversation can be carried on. A placeholder is used in the keyword along with generic phrases like "I feel", "I lost" which could be familiar in a psychotherapist session. 
 
 While there are particular keywords for which Eliza has a set of solutions, if she's unable to recognize the user's issue, Eliza will request more information in order to match the set of keywords to provide an accurate session.
 
-To end the session, 'exit' or 'bye' will terminate the session.
+To end the session, 'exit' or 'bye' will terminate the session. 
 
+The screenshot below captures a conversation between Eliza and a user. The conversation entails each point highlighted above. 
+
+## Bonus Functionality 
 ```
     currentTime = datetime.datetime.now()
     if currentTime.hour < 12:
