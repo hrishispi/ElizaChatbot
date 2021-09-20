@@ -97,7 +97,7 @@ model = {
             "Do you want something else?",
             "What do you want now then? Other than %s?"
         ],
-    r'(.*) divorce (.*)':
+    r'(.*)divorce(.*)':
         [
             "Are you sure about pursuing this choice?",
             "What happened?",
