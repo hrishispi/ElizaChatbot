@@ -214,8 +214,7 @@ def main():
     # main process (conversation)
     process(user_name)
     # end message
-    print("Eliza: Goodbye ")
-
+    print("Eliza: Goodbye %s. Thank you for attending this session. Your invoice will be sent to the email on file. Have a %s" % (user_name, greet()))
 
 if __name__ == '__main__':
     main()
