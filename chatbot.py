@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 15 05:44:06 2021
 
-@author: prakritipanday
-"""
 import datetime
 import random
 import re
