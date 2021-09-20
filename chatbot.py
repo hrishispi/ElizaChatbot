@@ -28,7 +28,7 @@ model = {
             "How are you dealing with the loss of %s?"
         ],
 
-    r'.*(depressed|sad|pressured?|stress(ed)?).*':
+    r'.*(depress(ed)|sad|pressured?|stress(ed)?).*':
         [
             "Why do you feel %s?",
             "Have you talked to anyone about how you are feeling?",
