@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Created on Wed Sep 15 05:44:06 2021
-Class: AIT 526
-@author: Prakriti Panday, Sean Park, Alice Chen , Hrishikesh Karambelkar
+AIT 526
+Programming Assignment 1
+@author: Team 1 - Alice Chen, Hrishikesh Karambelkar, Prakriti Panday, Sean Park 
 """
 # import all the necessary packages
 import datetime
@@ -20,14 +21,12 @@ model = {
             "How would you describe your relationship with your %s?",
             "What do you enjoy doing with your %s?"
         ],
-
     r'i lost (.*)':
         [
             "I'm sorry to hear that. Can you tell me what happened?",
             "That must be tough. How are you feeling now?",
             "How are you dealing with the loss of %s?"
         ],
-
     r'.*(depress(ed)|sad|pressured?|stress(ed)?).*':
         [
             "Why do you feel %s?",
@@ -79,23 +78,15 @@ model = {
     r'i am not ready (.*)':
         [
             "What makes you think you’re not ready %s?",
-            "Did you at least try to %s?",
+            "Did you at least try %s?",
             "What do you think you can do to prepare %s?"
-        ],
-    r'i don\'?t? have (.*)':
-        [
-            "Did you try earning %s?",
-            "What was the last thing you did to earn %s?",
-            "Do you know anyone with %s?",
-            "Do you know anyone who earned that %s and how?",
-            "Perhaps there are some sources available that teaches you how to get %s"
         ],
     r'i don\'?t? want(.*)':
         [
-            "Have you ever had %s?",
-            "What motivated you to not want %s?",
+            "Have you ever wanted %s?",
+            "Is there a reason why you don't want %s?",
             "Do you want something else?",
-            "What do you want now then? Other than %s?"
+            "What do you want now then?"
         ],
     r'(.*)divorce(.*)':
         [
@@ -108,7 +99,9 @@ model = {
             "Can you tell me more about it?",
             "Would you mind sharing more about it?",
             "Please tell me more.",
-            "How does that make you feel?"
+            "How does that make you feel?",
+            "I would like to hear more about this?",
+            "Have you talked to anyone about this?"
         ],
 
 }
@@ -195,8 +188,21 @@ def greet():
     # otherwise greet with "Good evening."
     else:
         return "Good evening."
-
-# initialize dialogue and return message with user name input along with extra functionality datetime greet
+        
+# extra functionality to end with a proper time of the day: morning, afternoon, and evening
+def end():
+    currentTime = datetime.datetime.now()
+    # if user time zone is before 12:00pm, end with "great morning."
+    if currentTime.hour < 12:
+        return "great morning."
+    # if user time zone is or after 12:00pm and before 6:00pm, end with "great afternoon."
+    elif 12 <= currentTime.hour < 18:
+        return "great afternoon."
+    # otherwise end with "great evening."
+    else:
+        return "great evening."
+        
+# initialize dialogue and return message with user name input along with extra functionality datetime greeting
 def initiate_conversation():
     print("Eliza: %s I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?" % greet())
     # initialize user name input
@@ -213,8 +219,8 @@ def main():
     user_name = initiate_conversation()
     # main process (conversation)
     process(user_name)
-    # end message
-    print("Eliza: Goodbye %s. Thank you for attending this session. Your invoice will be sent to the email on file. Have a %s" % (user_name, greet()))
+    # end message with user name input along with extra functionality datetime ending
+    print("Eliza: Goodbye %s. Thank you for attending this session. Your invoice will be sent to the email on file. Have a %s" % (user_name, end()))
 
 if __name__ == '__main__':
     main()
