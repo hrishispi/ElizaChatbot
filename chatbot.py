@@ -29,8 +29,9 @@ model = {
         ],
     r'.*(depress(ed)|sad|pressured?|stress(ed)?).*':
         [
-            "Why do you feel %s?",
+            "How often do you feel %s?",
             "Have you talked to anyone about how you are feeling?",
+            "Is there anything you enjoy doing so you don't feel %s?",
             "How do you prefer managing feeling %s?"
         ],
     r'.*(kill(ing|ed)?|suicide|die).*':
@@ -100,7 +101,7 @@ model = {
             "Would you mind sharing more about it?",
             "Please tell me more.",
             "How does that make you feel?",
-            "I would like to hear more about this?",
+            "I would like to hear more about this.",
             "Have you talked to anyone about this?"
         ],
 
