@@ -2,7 +2,7 @@
 """
 Created on Wed Sep 15 05:44:06 2021
 AIT 526
-Programming Assignment 1
+Eliza Chat bot - Programming Assignment 1
 @author: Team 1 - Alice Chen, Hrishikesh Karambelkar, Prakriti Panday, Sean Park 
 """
 # import all the necessary packages
@@ -107,7 +107,7 @@ model = {
 
 }
 
-# define pronoun to transform 2nd pov to 1st pov and 1st pov to 2nd pov, vice versa.
+# pronoun dictionary for transformation
 pronoun = {
     "you": "me",
     "yours": "mine",
@@ -124,19 +124,21 @@ pronoun = {
 
 }
 
-# tokenize the matching words and iterate lists of tokenizer
+
 def replace_pronouns(match):
+    """replace pronouns to transform 2nd pov to 1st pov and 1st pov to 2nd pov, vice versa."""
     tokenizer = word_tokenize(match)
-    
+
     # call the pronoun definition and replace the element in tokenizer, join the tokens, and return tokenizer
     for x, token in enumerate(tokenizer):
         if token in pronoun:
             tokenizer[x] = pronoun[token]
     return ' '.join(tokenizer)
 
-# define conversation input and return answer
+
 def conversation_input(user_input):
-    # iterate over the "conversation_dict"
+    """Returns Eliza's answer for the user input."""
+
     for pattern, responses in model.items():
         # checks for matching input vs the key
         ans = re.search(pattern, user_input.rstrip(",.!"))
@@ -144,23 +146,27 @@ def conversation_input(user_input):
         if ans:
             # the response will be randomly returned out of all the given "conversation_dict" under its key word
             response = random.choice(responses)
-            # if the question in "conversation_dict" includes "%s," the response will return with the information from the input
+            # if the question in "conversation_dict" includes "%s," the response will return with the information
+            # from the input
             if "%s" in response:
                 match = ans[1]
-                # when and if the key word include 2nd or 1st pov ("you" or "me"), it will transform to 1st or 2nd pov vice versa.
+                # when and if the key word include 2nd or 1st pov ("you" or "me"), it will transform to 1st or 2nd
+                # pov vice versa.
                 response = response % (replace_pronouns(match))
                 return response
             else:
                 return response
 
-# check input user name and return a greeting message, "Eliza: Welcome %s. What would you like to share with me today?" with the user name replaced in %s
+
 def process(user_name):
+    """This is the core Chat bot engine. Check input user name and return a greeting message, "Eliza: Welcome %s.
+    What would you like to share with me today?" with the user name replaced in %s. """
     print("Eliza: Welcome %s. What would you like to share with me today?" % user_name)
     # standard expression for bye
     end = [r'.*bye.*', r'.*exit.*']
     user_continue = True
     while user_continue:
-        #check and get input name and information 
+        # check and get input name and information
         user_input = input('%s: ' % user_name)
         print()
         # convert input into lowercase
@@ -177,34 +183,37 @@ def process(user_name):
             response = conversation_input(user_input)
             print("Eliza: " + response)
 
-# extra functionality to greet with a proper time of the day: morning, afternoon, and evening
+
 def greet():
-    currentTime = datetime.datetime.now()
+    """Additional functionality to greet with a proper time of the day: morning, afternoon, and evening. """
+    current_time = datetime.datetime.now()
     # if user time zone is before 12:00pm, greet with "Good morning."
-    if currentTime.hour < 12:
+    if current_time.hour < 12:
         return "Good morning."
     # if user time zone is or after 12:00pm and before 6:00pm , greet with "Good afternoon."
-    elif 12 <= currentTime.hour < 18:
+    elif 12 <= current_time.hour < 18:
         return "Good afternoon."
     # otherwise greet with "Good evening."
     else:
         return "Good evening."
-        
-# extra functionality to end with a proper time of the day: morning, afternoon, and evening
+
+
 def end():
-    currentTime = datetime.datetime.now()
+    """Additional functionality to end the chat with a proper time of the day: morning, afternoon, and evening. """
+    current_time = datetime.datetime.now()
     # if user time zone is before 12:00pm, end with "great morning."
-    if currentTime.hour < 12:
+    if current_time.hour < 12:
         return "great morning."
     # if user time zone is or after 12:00pm and before 6:00pm, end with "great afternoon."
-    elif 12 <= currentTime.hour < 18:
+    elif 12 <= current_time.hour < 18:
         return "great afternoon."
     # otherwise end with "great evening."
     else:
         return "great evening."
-        
-# initialize dialogue and return message with user name input along with extra functionality datetime greeting
+
+
 def initiate_conversation():
+    """Initiate dialogue and return message with user name input along with extra functionality datetime greeting. """
     print("Eliza: %s I'm Eliza, a psychotherapist. Who do I have the pleasure of speaking to today?" % greet())
     # initialize user name input
     name_input = input('User: ')
@@ -215,13 +224,18 @@ def initiate_conversation():
     user_name = tokenizer[-1]
     return user_name
 
-# main function to initialize chat conversation
+
 def main():
+    """main function to initialize chat conversation. """
     user_name = initiate_conversation()
     # main process (conversation)
     process(user_name)
     # end message with user name input along with extra functionality datetime ending
-    print("Eliza: Goodbye %s. Thank you for attending this session. Your invoice will be sent to the email on file. Have a %s" % (user_name, end()))
+    print(
+        "Eliza: Goodbye %s. Thank you for attending this session. Your invoice will be sent to the email on file. "
+        "Have a %s" % (
+            user_name, end()))
+
 
 if __name__ == '__main__':
     main()
