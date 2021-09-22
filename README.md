@@ -53,5 +53,13 @@ Ending
         
 ```
 
-## Algorithm flow diagram
+## Algorithm
+### Description
+
+* The dictionary data structure is used to store the key value pair of regular expressions and responses to the regular expressions.
+* The algorithm begins by greeting the user based on the system date, performing word spotting, transforming pronouns and responding to the user query
+* The algorithm runs the chat bot infinitely until the user inputs one of the "exit" keywords.
+
+
+### Flow Diagram
 ![Flow diagram](https://github.com/hrishispi/ElizaChatbot/blob/main/ElizaFlowDiagram.jpg?raw=true)
