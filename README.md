@@ -28,7 +28,8 @@ The screenshots below captures conversation between Eliza and a user. The conver
 
 <img width="974" alt="Chat bot usage" src="https://user-images.githubusercontent.com/90986120/134045996-9203f42e-6229-46d6-ab9c-3de95a62955a.png">
 
-<img width="893" alt="Chat bot usage" src="https://user-images.githubusercontent.com/90986120/134046003-3fc619e6-7274-4cfd-84af-052dd57cc524.png">
+![image_screenshot](https://user-images.githubusercontent.com/17058860/134269609-460f4e6e-83c8-4019-b759-af0c644c18ff.png)
+
 
 
 ## Bonus functionality 
