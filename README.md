@@ -26,9 +26,9 @@ To end the session, 'exit' or 'bye' will terminate the session.
 
 The screenshots below captures conversation between Eliza and a user. The conversation entails each point highlighted above. 
 
-<img width="974" alt="Screen Shot 2021-09-20 at 1 16 57 PM" src="https://user-images.githubusercontent.com/90986120/134045996-9203f42e-6229-46d6-ab9c-3de95a62955a.png">
+<img width="974" alt="Chat bot usage" src="https://user-images.githubusercontent.com/90986120/134045996-9203f42e-6229-46d6-ab9c-3de95a62955a.png">
 
-<img width="893" alt="Screen Shot 2021-09-20 at 1 21 07 PM" src="https://user-images.githubusercontent.com/90986120/134046003-3fc619e6-7274-4cfd-84af-052dd57cc524.png">
+<img width="893" alt="Chat bot usage" src="https://user-images.githubusercontent.com/90986120/134046003-3fc619e6-7274-4cfd-84af-052dd57cc524.png">
 
 
 ## Bonus functionality 
